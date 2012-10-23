@@ -1,0 +1,4 @@
+Quick and dirty Java XFDL -> XML converter
+
+Usage:
+java -jar "jXFDL.jar" [some.xfdl] > [some.xml]
