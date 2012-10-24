@@ -19,9 +19,6 @@ public class Base64GZip {
 
   public static InputStream B64GzipToInputStream(InputStream is) {
     try {
-      //BASE64Decoder b64 = new BASE64Decoder();
-      //decoded = new ByteArrayInputStream(b64.decodeBuffer(is));
-      
       InputStream decoded = new Base64InputStream(is);
       
       InputStream gzip = new GZIPInputStream(decoded);
