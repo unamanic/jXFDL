@@ -21,10 +21,8 @@
  */
 package jxfdl;
 
-import java.io.ByteArrayInputStream;
-import java.io.FileInputStream;
-import java.util.zip.GZIPInputStream;
-import sun.misc.BASE64Decoder;
+import java.io.File;
+
 
 /**
  *
@@ -36,26 +34,11 @@ public class JXFDL {
    * @param args the command line arguments
    */
   public static void main(String[] args) {
-    try {
-
-      FileInputStream fis = new FileInputStream(args[0]);
-      
-      //purge header info
-      for(int i = 0; i < 52; i++){
-        fis.read();
-      }
-      BASE64Decoder b64 = new BASE64Decoder();
-      ByteArrayInputStream decoded = new ByteArrayInputStream(b64.decodeBuffer(fis));
-      GZIPInputStream gzip = new GZIPInputStream(decoded);
-      
-      int g = 0;     
-      while ((g = gzip.read())!= -1) {
-        System.out.print((char) g);
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-//--
+    
+    File file = new File(args[0]);
+    
+    XFDLForm form = new XFDLForm(file);
+    
+    System.out.println(form.getFormXMLString());
   }
 }
