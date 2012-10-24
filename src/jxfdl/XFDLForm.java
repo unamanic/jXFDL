@@ -4,13 +4,10 @@
  */
 package jxfdl;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.zip.GZIPInputStream;
 import jxfdl.utils.Base64GZip;
-import sun.misc.BASE64Decoder;
 
 /**
  *
@@ -26,7 +23,7 @@ public class XFDLForm {
 
       FileInputStream fis = new FileInputStream(fileIn);
       
-      StringBuffer formXML = new StringBuffer();
+      StringBuilder formXML = new StringBuilder();
 
       //purge header info
       for (int i = 0; i < 52; i++) {
@@ -35,7 +32,7 @@ public class XFDLForm {
       
       InputStream processed = Base64GZip.B64GzipToInputStream(fis);
 
-      int c = 0;
+      int c;
       while ((c = processed.read()) != -1) {
         formXML.append((char) c);
       }
